@@ -1,0 +1,9 @@
+{
+  "@gluestack/glue-plugin-engine": [
+    {
+      "instance": "gluestack-engine",
+      "directory": "",
+      "container_store": {}
+    }
+  ]
+}
