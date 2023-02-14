@@ -45,6 +45,7 @@ var PluginInstance_1 = require("./PluginInstance");
 var reWriteFile_1 = __importDefault(require("./helpers/reWriteFile"));
 var replace_special_chars_1 = require("./helpers/replace-special-chars");
 var writeEnv_1 = require("./helpers/writeEnv");
+var update_workspaces_1 = require("./helpers/update-workspaces");
 var GlueStackPlugin = (function () {
     function GlueStackPlugin(app, gluePluginStore) {
         this.type = 'stateless';
@@ -73,13 +74,13 @@ var GlueStackPlugin = (function () {
     };
     GlueStackPlugin.prototype.runPostInstall = function (instanceName, target) {
         return __awaiter(this, void 0, void 0, function () {
-            var instance, routerFilePath;
+            var instance, routerFilePath, pluginPackage, rootPackage;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4, this.app.createPluginInstance(this, instanceName, this.getTemplateFolderPath(), target)];
                     case 1:
                         instance = _a.sent();
-                        if (!instance) return [3, 4];
+                        if (!instance) return [3, 6];
                         return [4, (0, writeEnv_1.writeEnv)(instance)];
                     case 2:
                         _a.sent();
@@ -87,8 +88,16 @@ var GlueStackPlugin = (function () {
                         return [4, (0, reWriteFile_1["default"])(routerFilePath, (0, replace_special_chars_1.replaceSpecialChars)(instanceName), 'services')];
                     case 3:
                         _a.sent();
-                        _a.label = 4;
-                    case 4: return [2];
+                        pluginPackage = "".concat(instance.getInstallationPath(), "/package.json");
+                        return [4, (0, reWriteFile_1["default"])(pluginPackage, instanceName, 'INSTANCENAME')];
+                    case 4:
+                        _a.sent();
+                        rootPackage = "".concat(process.cwd(), "/package.json");
+                        return [4, (0, update_workspaces_1.updateWorkspaces)(rootPackage, instance.getInstallationPath())];
+                    case 5:
+                        _a.sent();
+                        _a.label = 6;
+                    case 6: return [2];
                 }
             });
         });
