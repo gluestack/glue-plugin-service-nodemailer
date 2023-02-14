@@ -1,6 +1,6 @@
 {
   "name": "@gluestack/glue-plugin-service-nodemailer",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Create an Application using GlueStack framework",
   "repository": {
     "type": "git",
