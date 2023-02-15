@@ -7,9 +7,11 @@ import IInstance from "@gluestack/framework/types/plugin/interface/IInstance";
 import ILifeCycle from "@gluestack/framework/types/plugin/interface/ILifeCycle";
 import IManagesInstances from "@gluestack/framework/types/plugin/interface/IManagesInstances";
 import IGlueStorePlugin from "@gluestack/framework/types/store/interface/IGluePluginStore";
+
 import reWriteFile from "./helpers/reWriteFile";
-const { replaceSpecialChars } = require("@gluestack/helpers");
 import { writeEnv } from "./helpers/writeEnv";
+
+const { removeSpecialChars } = require("@gluestack/helpers");
 const { Workspaces } = require("@gluestack/helpers");
 
 //Do not edit the name of this class
@@ -54,18 +56,6 @@ export class GlueStackPlugin implements IPlugin, IManagesInstances, ILifeCycle {
   }
 
   async runPostInstall(instanceName: string, target: string) {
-    // await this.checkAlreadyInstalled();
-    // if (instanceName !== "email-sender") {
-    //   console.log("\x1b[36m");
-    //   console.log(
-    //     `Install email-sender instance: \`node glue add email-sender email-sender\``,
-    //   );
-    //   console.log("\x1b[31m");
-    //   throw new Error(
-    //     "email-sender supports instance name `email-sender` only",
-    //   );
-    // }
-
     const instance: PluginInstance = await this.app.createPluginInstance(
       this,
       instanceName,
@@ -77,7 +67,7 @@ export class GlueStackPlugin implements IPlugin, IManagesInstances, ILifeCycle {
       await writeEnv(instance);
 
       const routerFilePath = `${instance.getInstallationPath()}/router.js`;
-      await reWriteFile(routerFilePath, replaceSpecialChars(instanceName), 'services');
+      await reWriteFile(routerFilePath, removeSpecialChars(instanceName), 'services');
 
       // update package.json'S name index with the new instance name
       const pluginPackage = `${instance.getInstallationPath()}/package.json`;
@@ -88,20 +78,6 @@ export class GlueStackPlugin implements IPlugin, IManagesInstances, ILifeCycle {
       await Workspaces.append(rootPackage, instance.getInstallationPath());
     }
   }
-
-  // async checkAlreadyInstalled() {
-  //   const emailSender: GlueStackPlugin = this.app.getPluginByName(
-  //     "glue-plugin-service-nodemailer",
-  //   );
-  //   //Validation
-  //   if (emailSender?.getInstances()?.[0]) {
-  //     throw new Error(
-  //       `email-sender instance already installed as ${emailSender
-  //         .getInstances()[0]
-  //         .getName()}`,
-  //     );
-  //   }
-  // }
 
   createInstance(
     key: string,

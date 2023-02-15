@@ -114,18 +114,14 @@ var PluginInstanceContainerController = (function () {
     PluginInstanceContainerController.prototype.up = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2, new Promise(function (resolve, reject) {
-                        return resolve(true);
-                    })];
+                return [2];
             });
         });
     };
     PluginInstanceContainerController.prototype.down = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2, new Promise(function (resolve, reject) {
-                        return resolve(true);
-                    })];
+                return [2];
             });
         });
     };

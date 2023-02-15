@@ -1,7 +1,7 @@
 const { DockerodeHelper } = require("@gluestack/helpers");
 
 import { PluginInstance } from "./PluginInstance";
-import { constructEnvFromJson } from "./helpers/writeEnv"; 
+import { constructEnvFromJson } from "./helpers/writeEnv";
 import IApp from "@gluestack/framework/types/app/interface/IApp";
 import IContainerController from "@gluestack/framework/types/plugin/interface/IContainerController";
 
@@ -94,21 +94,11 @@ export class PluginInstanceContainerController implements IContainerController {
   getConfig(): any { }
 
   async up() {
-    return new Promise((resolve, reject) => {
-      // this.setStatus("up");
-      // this.setPortNumber(portNumber);
-      // this.setContainerId(containerId);
-      return resolve(true);
-    });
+    //
   }
 
   async down() {
-    return new Promise((resolve, reject) => {
-      // this.setStatus("down");
-      // this.setPortNumber(null);
-      // this.setContainerId(null);
-      return resolve(true);
-    });
+    //
   }
 
   async build() {

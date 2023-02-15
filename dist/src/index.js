@@ -43,8 +43,8 @@ exports.GlueStackPlugin = void 0;
 var package_json_1 = __importDefault(require("../package.json"));
 var PluginInstance_1 = require("./PluginInstance");
 var reWriteFile_1 = __importDefault(require("./helpers/reWriteFile"));
-var replaceSpecialChars = require("@gluestack/helpers").replaceSpecialChars;
 var writeEnv_1 = require("./helpers/writeEnv");
+var removeSpecialChars = require("@gluestack/helpers").removeSpecialChars;
 var Workspaces = require("@gluestack/helpers").Workspaces;
 var GlueStackPlugin = (function () {
     function GlueStackPlugin(app, gluePluginStore) {
@@ -85,7 +85,7 @@ var GlueStackPlugin = (function () {
                     case 2:
                         _a.sent();
                         routerFilePath = "".concat(instance.getInstallationPath(), "/router.js");
-                        return [4, (0, reWriteFile_1["default"])(routerFilePath, replaceSpecialChars(instanceName), 'services')];
+                        return [4, (0, reWriteFile_1["default"])(routerFilePath, removeSpecialChars(instanceName), 'services')];
                     case 3:
                         _a.sent();
                         pluginPackage = "".concat(instance.getInstallationPath(), "/package.json");
