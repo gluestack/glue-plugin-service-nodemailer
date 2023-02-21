@@ -1,6 +1,6 @@
 {
   "name": "@gluestack/glue-plugin-service-nodemailer",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Create an Application using GlueStack framework",
   "repository": {
     "type": "git",
@@ -15,13 +15,13 @@
   },
   "license": "ISC",
   "dependencies": {
-    "@gluestack/framework": "^0.0.28",
+    "@gluestack/framework": "^0.0.x",
     "@gluestack/glue-plugin-engine": "^0.0.x",
     "@gluestack/helpers": "^0.0.x",
     "@types/node": "^18.11.18"
   },
   "peerDependencies": {
-    "@gluestack/framework": "^0.0.28"
+    "@gluestack/glue-plugin-engine": "^0.0.x"
   },
   "main": "dist/src/index.js",
   "scripts": {
