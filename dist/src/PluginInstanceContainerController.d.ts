@@ -1,6 +1,6 @@
 import { PluginInstance } from "./PluginInstance";
 import IApp from "@gluestack/framework/types/app/interface/IApp";
-import IContainerController from "@gluestack/framework/types/plugin/interface/IContainerController";
+import IContainerController, { IRoutes } from "@gluestack/framework/types/plugin/interface/IContainerController";
 export declare class PluginInstanceContainerController implements IContainerController {
     app: IApp;
     status: "up" | "down";
@@ -23,4 +23,5 @@ export declare class PluginInstanceContainerController implements IContainerCont
     up(): Promise<void>;
     down(): Promise<void>;
     build(): Promise<void>;
+    getRoutes(): Promise<IRoutes[]>;
 }

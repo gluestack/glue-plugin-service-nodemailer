@@ -3,7 +3,7 @@ const { DockerodeHelper } = require("@gluestack/helpers");
 import { PluginInstance } from "./PluginInstance";
 import { constructEnvFromJson } from "./helpers/writeEnv";
 import IApp from "@gluestack/framework/types/app/interface/IApp";
-import IContainerController from "@gluestack/framework/types/plugin/interface/IContainerController";
+import IContainerController, { IRoutes } from "@gluestack/framework/types/plugin/interface/IContainerController";
 
 export class PluginInstanceContainerController implements IContainerController {
   app: IApp;
@@ -103,5 +103,13 @@ export class PluginInstanceContainerController implements IContainerController {
 
   async build() {
     //
+  }
+
+  async getRoutes(): Promise<IRoutes[]> {
+    const routes: IRoutes[] = [
+      { method: "POST", path: "/send" }
+    ];
+
+    return Promise.resolve(routes);
   }
 }

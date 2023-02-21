@@ -132,6 +132,17 @@ var PluginInstanceContainerController = (function () {
             });
         });
     };
+    PluginInstanceContainerController.prototype.getRoutes = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var routes;
+            return __generator(this, function (_a) {
+                routes = [
+                    { method: "POST", path: "/send" }
+                ];
+                return [2, Promise.resolve(routes)];
+            });
+        });
+    };
     return PluginInstanceContainerController;
 }());
 exports.PluginInstanceContainerController = PluginInstanceContainerController;
