@@ -10,8 +10,9 @@ import IGlueStorePlugin from "@gluestack/framework/types/store/interface/IGluePl
 
 import reWriteFile from "./helpers/reWriteFile";
 import { writeEnv } from "./helpers/writeEnv";
+import { join } from "path";
 
-const { removeSpecialChars } = require("@gluestack/helpers");
+const { createFolder, writeFile, removeSpecialChars } = require("@gluestack/helpers");
 const { Workspaces } = require("@gluestack/helpers");
 
 //Do not edit the name of this class
@@ -64,6 +65,9 @@ export class GlueStackPlugin implements IPlugin, IManagesInstances, ILifeCycle {
     );
 
     if (instance) {
+      await createFolder(join(instance.getInstallationPath(), 'components'));
+      await writeFile(join(instance.getInstallationPath(), 'components', 'function.yaml'), '');
+
       await writeEnv(instance);
 
       const routerFilePath = `${instance.getInstallationPath()}/router.js`;

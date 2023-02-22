@@ -44,7 +44,8 @@ var package_json_1 = __importDefault(require("../package.json"));
 var PluginInstance_1 = require("./PluginInstance");
 var reWriteFile_1 = __importDefault(require("./helpers/reWriteFile"));
 var writeEnv_1 = require("./helpers/writeEnv");
-var removeSpecialChars = require("@gluestack/helpers").removeSpecialChars;
+var path_1 = require("path");
+var _a = require("@gluestack/helpers"), createFolder = _a.createFolder, writeFile = _a.writeFile, removeSpecialChars = _a.removeSpecialChars;
 var Workspaces = require("@gluestack/helpers").Workspaces;
 var GlueStackPlugin = (function () {
     function GlueStackPlugin(app, gluePluginStore) {
@@ -80,24 +81,30 @@ var GlueStackPlugin = (function () {
                     case 0: return [4, this.app.createPluginInstance(this, instanceName, this.getTemplateFolderPath(), target)];
                     case 1:
                         instance = _a.sent();
-                        if (!instance) return [3, 6];
-                        return [4, (0, writeEnv_1.writeEnv)(instance)];
+                        if (!instance) return [3, 8];
+                        return [4, createFolder((0, path_1.join)(instance.getInstallationPath(), 'components'))];
                     case 2:
+                        _a.sent();
+                        return [4, writeFile((0, path_1.join)(instance.getInstallationPath(), 'components', 'function.yaml'), '')];
+                    case 3:
+                        _a.sent();
+                        return [4, (0, writeEnv_1.writeEnv)(instance)];
+                    case 4:
                         _a.sent();
                         routerFilePath = "".concat(instance.getInstallationPath(), "/router.js");
                         return [4, (0, reWriteFile_1["default"])(routerFilePath, removeSpecialChars(instanceName), 'services')];
-                    case 3:
+                    case 5:
                         _a.sent();
                         pluginPackage = "".concat(instance.getInstallationPath(), "/package.json");
                         return [4, (0, reWriteFile_1["default"])(pluginPackage, instanceName, 'INSTANCENAME')];
-                    case 4:
+                    case 6:
                         _a.sent();
                         rootPackage = "".concat(process.cwd(), "/package.json");
                         return [4, Workspaces.append(rootPackage, instance.getInstallationPath())];
-                    case 5:
+                    case 7:
                         _a.sent();
-                        _a.label = 6;
-                    case 6: return [2];
+                        _a.label = 8;
+                    case 8: return [2];
                 }
             });
         });
