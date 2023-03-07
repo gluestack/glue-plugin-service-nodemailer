@@ -13,7 +13,7 @@ export const parameters = {
     storySort: {
       method: 'alphabetical',
       order: [
-        'Nodemailer Plugin',
+        'Service Nodemailer Plugin',
         ['Getting Started', 'Requirements', 'How to Install'],
       ]
     },
