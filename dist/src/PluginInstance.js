@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.PluginInstance = void 0;
 var PluginInstanceContainerController_1 = require("./PluginInstanceContainerController");
 var PluginInstance = (function () {
